@@ -1,12 +1,12 @@
 package amaranth.aurora;
-/*
+
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends FragmentActivity {
+public class LoginActivity extends FragmentActivity {
     private MainFragment mainFragment;
 
     //comment Steven
@@ -15,7 +15,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
             mainFragment = new MainFragment();
@@ -29,7 +28,7 @@ public class MainActivity extends FragmentActivity {
                     .findFragmentById(android.R.id.content);
         }
 
-       //setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
     }
 
 
@@ -57,4 +56,4 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-*/
+
