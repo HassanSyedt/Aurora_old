@@ -1,5 +1,6 @@
 package amaranth.aurora;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,8 +10,8 @@ import android.view.MenuItem;
 public class LoginActivity extends FragmentActivity {
     private MainFragment mainFragment;
 
-    //comment Steven1
-
+    //Values for temp username
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,15 @@ public class LoginActivity extends FragmentActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+
+        //Steven: Handle presses on the action bar items
+        Intent intent = null;
+        switch(item.getItemId()){
+            case R.id.action_settings: //Settings menu item press
+                return true;
+            //case R.id.action_;
+        }
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
