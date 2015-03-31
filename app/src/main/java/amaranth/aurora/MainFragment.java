@@ -50,9 +50,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
             startActivity(intent);
 
 
-
-
-
         } else if (state.isClosed()){
             Log.i(TAG, "Logged out...");
 
