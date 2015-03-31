@@ -10,12 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
+import com.facebook.*;
 import com.facebook.model.GraphObject;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
@@ -51,6 +46,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
             //this is where i assume you handle logging into q=w
             Log.i(TAG,"Logged in...");
 
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
 
 
 

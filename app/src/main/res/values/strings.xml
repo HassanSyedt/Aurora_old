@@ -10,11 +10,14 @@
     <string name="button_event">EventSysDebug</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_test">Test</string>
+
     <string-array name="test_name">
         <item>Profile</item>
         <item>Friends</item>
         <item>Settings</item>
         <item>The Special</item>
     </string-array>
+
+    <string name="title_activity_home">HomeActivity</string>
 
 </resources>
