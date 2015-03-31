@@ -51,8 +51,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
             //this is where i assume you handle logging into q=w
             Log.i(TAG,"Logged in...");
 
-            Intent intent= new Intent(getActivity(),Test.class);
-            startActivity(intent);
+
+
 
 
 
