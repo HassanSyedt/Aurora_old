@@ -46,7 +46,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
             //this is where i assume you handle logging into q=w
             Log.i(TAG,"Logged in...");
 
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            Intent intent = new Intent(getActivity(), MainActivity2Activity.class);
             startActivity(intent);
 
 
@@ -70,7 +70,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main, container, false);
+        View view = inflater.inflate(R.layout.activity_login, container, false);
         LoginButton authButton= (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
         authButton.setReadPermissions(Arrays.asList("public_profile","user_friends"));

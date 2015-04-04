@@ -29,7 +29,7 @@ public class LoginActivity extends FragmentActivity {
                     .findFragmentById(android.R.id.content);
         }
 
-        //setContentView(R.layout.activity_main);
+
     }
 
 

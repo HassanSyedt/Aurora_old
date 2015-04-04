@@ -11,11 +11,13 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
     <item
+
         app:showAsAction="always"
         android:icon="@drawable/middle"
         android:id="@+id/menu_events"
         android:title="Events"
         ></item>
+    <!-- android:onClick="" -->
 
     <item
         app:showAsAction="always"
@@ -23,6 +25,7 @@
         android:id="@+id/menu_event_notifications"
         android:title="Notifications"
         ></item>
+    <!-- android:onClick="" -->
 
     <item
         app:showAsAction="always"
@@ -30,4 +33,5 @@
         android:id="@+id/menu_invites"
         android:title="Invites"
         ></item>
+    <!-- android:onClick="" -->
 </menu>
