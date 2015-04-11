@@ -15,7 +15,7 @@ timestamp
 eaddress
 
 ##Notifications
-####nid(primary key)
+nid(primary key)
 uid
 ntype
 ndate
