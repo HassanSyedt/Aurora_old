@@ -252,7 +252,7 @@ public class MainActivity2Activity extends ActionBarActivity implements ActionBa
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_home2, container, false);
+            View rootView = inflater.inflate(R.layout.activity_home3, container, false);
             return rootView;
         }
     }
