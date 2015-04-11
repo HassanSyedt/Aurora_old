@@ -1,10 +1,10 @@
-##Users
-####UID(primary key)
+Users
+UID(primary key)
 Fname
 Lname
 
-##Events
-####eid(primary key)
+Events
+eid(primary key)
 ownerid(foreign key)
 edate
 etype
@@ -14,7 +14,7 @@ ename
 timestamp
 eaddress
 
-##Notifications
+Notifications
 nid(primary key)
 uid
 ntype
@@ -22,7 +22,7 @@ ndate
 timestamp
 nread
 
-##GuestList
-####gid(foreign key)
+GuestList
+gid(foreign key)
 eid(foreign key)
 gstatus
