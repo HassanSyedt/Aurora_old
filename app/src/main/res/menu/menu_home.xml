@@ -1,37 +1,6 @@
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="amaranth.aurora.HomeActivity">
-
-
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item
-
-        app:showAsAction="always"
-        android:icon="@drawable/middle"
-        android:id="@+id/menu_events"
-        android:title="Events"
-        ></item>
-    <!-- android:onClick="" -->
-
-    <item
-        app:showAsAction="always"
-        android:icon="@drawable/icon_left"
-        android:id="@+id/menu_event_notifications"
-        android:title="Notifications"
-        ></item>
-    <!-- android:onClick="" -->
-
-    <item
-        app:showAsAction="always"
-        android:icon="@drawable/icon_right"
-        android:id="@+id/menu_invites"
-        android:title="Invites"
-        ></item>
-    <!-- android:onClick="" -->
+    xmlns:tools="http://schemas.android.com/tools" tools:context="amaranth.aurora.HomeActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>
