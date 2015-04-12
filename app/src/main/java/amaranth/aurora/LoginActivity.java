@@ -5,6 +5,11 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
+import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+
+import java.net.MalformedURLException;
 
 
 public class LoginActivity extends FragmentActivity {
@@ -12,6 +17,9 @@ public class LoginActivity extends FragmentActivity {
 
     //Values for temp username
     private String userName;
+
+    //
+    private MobileServiceClient mClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +38,37 @@ public class LoginActivity extends FragmentActivity {
         }
 
 
+        try {
+            // Create the Mobile Service Client instance, using the provided
+            // Mobile service URL and key
+            mClient = new MobileServiceClient(
+                    "https://amaranth.azure-mobile.net/",
+                    "rdOXGrAPEwiqjjIyXUePkwRMbuywVT70",
+                    this
+            );
+        }
+
+
+        catch (MalformedURLException e) {
+            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
+            e.printStackTrace();
+        }
+/*        Item item = new Item();
+        item.Text = "Awesome item";
+        mClient.getTable(Item.class).insert(item, new TableOperationCallback<Item>() {
+            public void onCompleted(Item entity, Exception exception, ServiceFilterResponse response) {
+                if (exception == null) {
+                    // Insert succeeded
+                } else {
+                    // Insert failed
+                }
+            }
+        });*/
     }
+/*    public class Item {
+        public String Id;
+        public String Text;
+    }*/
 
 
     @Override
