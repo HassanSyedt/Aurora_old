@@ -18,15 +18,14 @@
  -->
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"
-        android:layout_width="145dp"
+        android:layout_width="129dp"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="0dp"
 
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_gravity="bottom"
-        android:layout_weight="0.33" />
+        android:layout_gravity="bottom" />
 
 
 

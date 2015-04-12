@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 
 public class LoginActivity extends FragmentActivity {
-    private MainFragment mainFragment;
+    private LoginFragment loginFragment;
 
     //Values for temp username
     private String userName;
@@ -18,14 +18,14 @@ public class LoginActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
-            mainFragment = new MainFragment();
+            loginFragment = new LoginFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(android.R.id.content, mainFragment)
+                    .add(android.R.id.content, loginFragment)
                     .commit();
         } else {
             // Or set the fragment from restored state info
-            mainFragment = (MainFragment) getSupportFragmentManager()
+            loginFragment = (LoginFragment) getSupportFragmentManager()
                     .findFragmentById(android.R.id.content);
         }
 

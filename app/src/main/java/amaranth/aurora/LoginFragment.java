@@ -8,29 +8,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.facebook.*;
-import com.facebook.model.GraphObject;
-import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.net.UnknownServiceException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends android.support.v4.app.Fragment {
+public class LoginFragment extends android.support.v4.app.Fragment {
 
-    private MainFragment mainFragment;
+    private LoginFragment loginFragment;
     private static final String TAG= "MainFragment";
     private UiLifecycleHelper uiHelper;
 
@@ -46,7 +36,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
             //this is where i assume you handle logging into q=w
             Log.i(TAG,"Logged in...");
 
-            Intent intent = new Intent(getActivity(), MainActivity2Activity.class);
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
             startActivity(intent);
 
 
@@ -55,7 +45,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
         }
     }
-    public MainFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
