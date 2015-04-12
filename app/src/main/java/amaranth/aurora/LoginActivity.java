@@ -3,11 +3,22 @@ package amaranth.aurora;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.facebook.FacebookRequestError;
+import com.facebook.HttpMethod;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.model.GraphObject;
 import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.RequestAsyncTask;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 
@@ -64,7 +75,28 @@ public class LoginActivity extends FragmentActivity {
                 }
             }
         });*/
-    }
+        Session session = Session.getActiveSession();
+       // Bundle params= new Bundle();
+        com.facebook.RequestAsyncTask request = new Request(
+                session,
+                "/{user-id}",
+                null,
+                HttpMethod.GET,
+                new Request.Callback() {
+
+                    @Override
+                    public void onCompleted(Response response) {
+                        /* handle the result */
+                        try {
+                            JSONObject res = response.getGraphObject().getInnerJSONObject().getJSONArray("data").getJSONObject(0);
+                            final String name = (String) res.get("name");
+                            Log.i("The name: ", name);
+                        } catch (Exception e) {
+                          }
+                    }
+                }).executeAsync();
+        }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

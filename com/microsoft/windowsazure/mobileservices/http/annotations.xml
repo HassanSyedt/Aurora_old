@@ -1,0 +1,5 @@
+<root>
+    <item name='com.microsoft.windowsazure.mobileservices.http.RequestAsyncTask'>
+        <annotation name='java.lang.annotation.Deprecated' />
+    </item>
+</root>
