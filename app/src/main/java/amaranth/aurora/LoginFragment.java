@@ -24,6 +24,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
     private static final String TAG= "MainFragment";
     private UiLifecycleHelper uiHelper;
 
+
     private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
         public void call(Session session, SessionState state, Exception exception) {
@@ -35,7 +36,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         if (state.isOpened()) {
             //this is where i assume you handle logging into q=w
             Log.i(TAG,"Logged in...");
-
+            //Log.i("The name2: ", LoginActivity.name2);
             Intent intent = new Intent(getActivity(), HomeActivity.class);
             startActivity(intent);
 
@@ -63,7 +64,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.activity_login, container, false);
         LoginButton authButton= (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
-        authButton.setReadPermissions(Arrays.asList("public_profile","user_friends"));
+        authButton.setReadPermissions(Arrays.asList("public_profile"));
 
         return view;
     }

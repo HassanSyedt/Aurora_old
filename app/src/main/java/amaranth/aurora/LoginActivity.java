@@ -29,14 +29,14 @@ public class LoginActivity extends FragmentActivity {
     //Values for temp username
     private String userName;
 
-    //
-    private MobileServiceClient mClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             // Add the fragment on initial activity setup
+            Log.i("ONCREATE: ", "CREATING FRAGMENT INITIAL");
             loginFragment = new LoginFragment();
             getSupportFragmentManager()
                     .beginTransaction()
@@ -49,52 +49,7 @@ public class LoginActivity extends FragmentActivity {
         }
 
 
-        try {
-            // Create the Mobile Service Client instance, using the provided
-            // Mobile service URL and key
-            mClient = new MobileServiceClient(
-                    "https://amaranth.azure-mobile.net/",
-                    "rdOXGrAPEwiqjjIyXUePkwRMbuywVT70",
-                    this
-            );
-        }
 
-
-        catch (MalformedURLException e) {
-            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
-            e.printStackTrace();
-        }
-/*        Item item = new Item();
-        item.Text = "Awesome item";
-        mClient.getTable(Item.class).insert(item, new TableOperationCallback<Item>() {
-            public void onCompleted(Item entity, Exception exception, ServiceFilterResponse response) {
-                if (exception == null) {
-                    // Insert succeeded
-                } else {
-                    // Insert failed
-                }
-            }
-        });*/
-        Session session = Session.getActiveSession();
-       // Bundle params= new Bundle();
-        com.facebook.RequestAsyncTask request = new Request(
-                session,
-                "/{user-id}",
-                null,
-                HttpMethod.GET,
-                new Request.Callback() {
-
-                    @Override
-                    public void onCompleted(Response response) {
-                        /* handle the result */
-                        try {
-                            JSONObject res = response.getGraphObject().getInnerJSONObject().getJSONArray("data").getJSONObject(0);
-                            final String name = (String) res.get("name");
-                            Log.i("The name: ", name);
-                        } catch (Exception e) {
-                          }
-                    }
-                }).executeAsync();
         }
 
     @Override
