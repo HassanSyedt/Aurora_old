@@ -1,0 +1,28 @@
+Users
+UID(primary key)
+Fname
+Lname
+
+Events
+eid(primary key)
+ownerid(foreign key)
+edate
+etype
+ecat
+eDscp
+ename
+timestamp
+eaddress
+
+Notifications
+nid(primary key)
+uid
+ntype
+ndate
+timestamp
+nread
+
+GuestList
+gid(foreign key)
+eid(foreign key)
+gstatus
