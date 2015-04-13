@@ -10,20 +10,27 @@
     <string name="button_event">EventSysDebug</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_test">Test</string>
+    <string name="list_settings">Settings List</string>
 
-    <string-array name="test_name">
+    <string-array name="Settings_Array">
         <item>Profile</item>
-        <item>Friends</item>
-        <item>Settings</item>
-        <item>The Special</item>
+        <item>Account</item>
+        <item>Location</item>
+        <item>Bitches</item>
     </string-array>
 
     <string name="title_activity_home">HomeActivity</string>
 
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_section1">Calendar</string>
+    <string name="title_section2">Notifications</string>
+    <string name="title_section3">Add</string>
+    <string name="title_activity_main">Aurora</string>
+    <string name="title_activity_drawer_">Drawer_Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
 
 </resources>

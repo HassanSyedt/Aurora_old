@@ -13,7 +13,7 @@ import amaranth.aurora.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public  class CalFragment extends android.support.v4.app.Fragment {
+public class CalFragment extends android.support.v4.app.Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -24,7 +24,7 @@ public  class CalFragment extends android.support.v4.app.Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static  CalFragment newInstance(int sectionNumber) {
+    public static CalFragment newInstance(int sectionNumber) {
         CalFragment fragment = new CalFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);

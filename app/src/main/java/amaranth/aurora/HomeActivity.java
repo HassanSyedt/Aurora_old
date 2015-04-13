@@ -2,6 +2,7 @@ package amaranth.aurora;
 
 import java.util.Locale;
 
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import amaranth.aurora.Tabs.AddFragment;
@@ -35,6 +39,8 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -45,6 +51,10 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Log.i("home activity", "Inflated activity login");
+
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -55,7 +65,7 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager_container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // When swiping between different sections, select the corresponding
@@ -79,6 +89,7 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
     }
 
 
@@ -170,7 +181,6 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
             return null;
         }
     }
-
 
 
 }
