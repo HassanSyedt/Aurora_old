@@ -1,8 +1,8 @@
 package amaranth.aurora;
 
-import java.net.MalformedURLException;
 import java.util.Locale;
 
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,16 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
-
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.RequestAsyncTask;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-
-import org.json.JSONObject;
 
 import amaranth.aurora.Tabs.AddFragment;
 import amaranth.aurora.Tabs.CalFragment;
@@ -45,20 +39,22 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
 
-    private MobileServiceClient mClient;
-    public static String name2;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Log.i("home activity", "Inflated activity login");
+
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -69,7 +65,7 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager_container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // When swiping between different sections, select the corresponding
@@ -93,58 +89,6 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
-
-
-        try {
-            // Create the Mobile Service Client instance, using the provided
-            // Mobile service URL and key
-            mClient = new MobileServiceClient(
-                    "https://amaranth.azure-mobile.net/",
-                    "rdOXGrAPEwiqjjIyXUePkwRMbuywVT70",
-                    this
-            );
-        }
-
-
-        catch (MalformedURLException e) {
-            //createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
-            e.printStackTrace();
-        }
-/*        Item item = new Item();
-        item.Text = "Awesome item";
-        mClient.getTable(Item.class).insert(item, new TableOperationCallback<Item>() {
-            public void onCompleted(Item entity, Exception exception, ServiceFilterResponse response) {
-                if (exception == null) {
-                    // Insert succeeded
-                } else {
-                    // Insert failed
-                }
-            }
-        });*/
-        Session session = Session.getActiveSession();
-        // Bundle params= new Bundle();
-        com.facebook.RequestAsyncTask request = new Request(
-                session,
-                "/{user-id}",
-                null,
-                HttpMethod.GET,
-                new Request.Callback() {
-
-                    @Override
-                    public void onCompleted(Response response) {
-                        /* handle the result */
-                        try {
-                            JSONObject res = response.getGraphObject().getInnerJSONObject();
-                            final String name = (String) res.get("name");
-                            name2=name;
-                            Log.i("JSON CALL ", name);
-                        } catch (Exception e) {
-                            Log.i("EXCEPTION: ", e.toString());
-                        }
-                    }
-                }).executeAsync();
-
-
 
     }
 
@@ -237,7 +181,6 @@ public class HomeActivity extends ActionBarActivity implements ActionBar.TabList
             return null;
         }
     }
-
 
 
 }
