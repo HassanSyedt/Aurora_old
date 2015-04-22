@@ -16,11 +16,21 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
+import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+
+import java.net.MalformedURLException;
+
+import amaranth.aurora.DatabaseObjects.Item;
+
+
 
 public class LoginActivity extends FragmentActivity {
 
 
-    //Values for temp username
+    private MobileServiceClient mClient;
+
     LoginButton loginButton;
 
     CallbackManager callbackManager;
@@ -28,6 +38,19 @@ public class LoginActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        try {
+            mClient = new MobileServiceClient(
+                    "https://amaranth.azure-mobile.net/",
+                    "KOptzrmnMshIGoHdfZfjhiqiOTSVAr32",
+                    this
+            );
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_login);
@@ -43,6 +66,21 @@ public class LoginActivity extends FragmentActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
+
+                Item item = new Item();
+                item.Text = "Awesome item";
+                mClient.getTable(Item.class).insert(item, new TableOperationCallback<Item>() {
+                    public void onCompleted(Item entity, Exception exception, ServiceFilterResponse response) {
+                        if (exception == null) {
+                            Log.i("Success", "Success");
+                        } else {
+                            Log.i("Failure", "Failure");
+                        }
+                    }
+                });
+
+
                 //do something on successful login
                 //loginresult holds the AccessToken
                //Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
@@ -109,4 +147,5 @@ public class LoginActivity extends FragmentActivity {
     }
 
 }
+
 
