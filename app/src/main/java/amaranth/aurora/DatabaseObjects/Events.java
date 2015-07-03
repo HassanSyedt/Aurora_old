@@ -11,4 +11,5 @@ public class Events {
     public String ecat;  //public category
     public String eDscp; //description
     public String eaddress; //address
+
 }

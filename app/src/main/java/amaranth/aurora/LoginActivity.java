@@ -1,12 +1,12 @@
 package amaranth.aurora;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -15,10 +15,11 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-
-import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+
+import org.json.JSONArray;
 
 import java.net.MalformedURLException;
 
@@ -29,9 +30,11 @@ import amaranth.aurora.DatabaseObjects.Item;
 public class LoginActivity extends FragmentActivity {
 
 
+
     private MobileServiceClient mClient;
 
     LoginButton loginButton;
+
 
     CallbackManager callbackManager;
 
@@ -52,6 +55,7 @@ public class LoginActivity extends FragmentActivity {
 
 
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.settings, false);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_login);
 
@@ -59,6 +63,8 @@ public class LoginActivity extends FragmentActivity {
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions( "user_friends");
+
+
 
 
         callbackManager = CallbackManager.Factory.create();
@@ -81,6 +87,8 @@ public class LoginActivity extends FragmentActivity {
                 });
 
 
+
+
                 //do something on successful login
                 //loginresult holds the AccessToken
                //Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
@@ -88,6 +96,7 @@ public class LoginActivity extends FragmentActivity {
                 //Log.i("SUCCESSFUL LOGIN", "logging in");
                 Intent intent= new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
+
 
             }
 

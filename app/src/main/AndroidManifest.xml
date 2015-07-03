@@ -21,13 +21,15 @@
             </intent-filter>
         </activity
         -->
-        <activity android:name="com.facebook.FacebookActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        <activity
+            android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <activity
             android:name=".LoginActivity"
@@ -41,6 +43,22 @@
         <activity
             android:name=".HomeActivity"
             android:label="" >
+        </activity>
+        <activity
+            android:name=".Settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="amaranth.aurora.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".AddActivity"
+            android:label="@string/title_activity_add" >
+        </activity>
+        <activity
+            android:name=".addActivity"
+            android:label="@string/title_activity_add" >
         </activity>
     </application>
 

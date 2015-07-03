@@ -33,6 +33,7 @@ public class CalFragment extends android.support.v4.app.Fragment {
     }
 
     public CalFragment() {
+
     }
 
     @Override

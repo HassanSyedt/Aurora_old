@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+<PreferenceCategory
+    android:title="Notification"
+    android:key="pref_key_notifications_settings" >
+    <SwitchPreference
+          android:title="Accepted"
+          android:key="pref_key_notification_accepted"
+          android:defaultValue="true"
+        />
+    <SwitchPreference
+        android:title="Declined"
+        android:key="pref_key_notification_declined"
+        android:defaultValue="true"
+        />
+    <SwitchPreference
+        android:title="Invited to"
+        android:key="pref_key_notification_invited_to"
+        android:defaultValue="true"/>
+    <SwitchPreference
+        android:title="Invite update"
+        android:key="pref_key_notification_invite_update"
+        android:defaultValue="true"/>
+
+
+
+
+
+</PreferenceCategory>
+
+<PreferenceCategory
+    android:title="Invites"
+    android:key="pref_key_invites_settings"
+    />
+    <Preference
+
+        />
+
+</PreferenceScreen>

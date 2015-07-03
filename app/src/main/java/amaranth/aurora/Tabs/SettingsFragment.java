@@ -2,6 +2,8 @@ package amaranth.aurora.Tabs;
 
 
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,7 @@ import amaranth.aurora.R;
 /**
  * A simple {@link android.app.Fragment} subclass.
  */
-public class SettingsFragment extends android.support.v4.app.Fragment {
+public class SettingsFragment extends Fragment {
 
     /**
      * The fragment argument representing the section number for this
@@ -41,6 +43,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment {
         View rootView = inflater.inflate(R.layout.activity_settings, container, false);
         return rootView;
     }
+
+
 
 
 }

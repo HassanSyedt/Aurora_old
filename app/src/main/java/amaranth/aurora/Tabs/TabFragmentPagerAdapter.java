@@ -1,18 +1,22 @@
 package amaranth.aurora.Tabs;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import com.astuetz.PagerSlidingTabStrip;
 
 import amaranth.aurora.R;
+
+import com.astuetz.PagerSlidingTabStrip;
 
 
 /**
  * Created by user on 4/20/2015.
  */
-public class TabFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter implements PagerSlidingTabStrip.IconTabProvider{
+public class TabFragmentPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip.IconTabProvider,ViewPager.OnPageChangeListener{
 
     final int PAGE_COUNT = 4;
 
@@ -42,7 +46,7 @@ public class TabFragmentPagerAdapter extends android.support.v4.app.FragmentPage
                 return AddFragment.newInstance(3);
             case 3:
                 Log.i("PAGER",""+position);
-                return SettingsFragment.newInstance(4);
+                return  SettingsFragment.newInstance(4);
             default:
                 Log.i("PAGER", "Something went wrong we are outside if statements, position:  " + position);
                 return CalFragment.newInstance(1);
@@ -56,4 +60,21 @@ public class TabFragmentPagerAdapter extends android.support.v4.app.FragmentPage
         return tabIcons[i];
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if(position==2){
+           
+
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }

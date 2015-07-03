@@ -1,39 +1,27 @@
 package amaranth.aurora;
 
-import java.util.Locale;
-
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 
-import amaranth.aurora.Tabs.AddFragment;
-import amaranth.aurora.Tabs.CalFragment;
-import amaranth.aurora.Tabs.NotificationFragment;
+import org.json.JSONArray;
+
+import amaranth.aurora.Adaptors.Friend;
+import amaranth.aurora.Adaptors.FriendsAdapter;
 import amaranth.aurora.Tabs.TabFragmentPagerAdapter;
 
 
 public class HomeActivity extends FragmentActivity {
-
+    FriendsAdapter friendsAdapter;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -42,14 +30,12 @@ public class HomeActivity extends FragmentActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    // SectionsPagerAdapter mSectionsPagerAdapter;
-    private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
+
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +50,34 @@ public class HomeActivity extends FragmentActivity {
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
+
+
+
+        //friendDisplay();
     }
+
+    private void friendDisplay(){
+        Log.i("FriendDisplay","In FriendDisplay");
+        GraphRequest request= GraphRequest.newMyFriendsRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONArrayCallback() {
+            @Override
+            public void onCompleted(JSONArray objects, GraphResponse response) {
+                //creating a new friends adapter
+                Log.i("FriendsAdapter","Creating a new friends adapter");
+                friendsAdapter= new FriendsAdapter(HomeActivity.this, Friend.fromJson(objects));
+            }
+        });
+
+        request.executeAsync();
+        Log.i("Executed request","Request has been executed");
+        ListView listView = (ListView) findViewById(android.R.id.list);
+        Log.i("ListView","Got listView is it = to null "+(listView==null));
+        if(listView!=null) {
+            Log.i("ListView Success", "Attaching adapter to a not null list view");
+            listView.setAdapter(friendsAdapter);
+        }
+        else{
+            Log.i("ListView","ListView is = to null so adaptor wasn't attached");
+        }
+    }
+
 }
