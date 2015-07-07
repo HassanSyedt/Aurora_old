@@ -1,12 +1,10 @@
 package amaranth.aurora;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.ListView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.facebook.AccessToken;
@@ -15,13 +13,17 @@ import com.facebook.GraphResponse;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+
 import amaranth.aurora.Adaptors.Friend;
 import amaranth.aurora.Adaptors.FriendsAdapter;
 import amaranth.aurora.Tabs.TabFragmentPagerAdapter;
 
 
 public class HomeActivity extends FragmentActivity {
-    FriendsAdapter friendsAdapter;
+    private static FriendsAdapter friendsAdapter;
+    private ArrayList<Friend> friends;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -31,6 +33,9 @@ public class HomeActivity extends FragmentActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
 
+    public static FriendsAdapter getFriendsAdapter() {
+        return friendsAdapter;
+    }
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -52,32 +57,24 @@ public class HomeActivity extends FragmentActivity {
         tabsStrip.setViewPager(viewPager);
 
 
-
-        //friendDisplay();
+        friendRequest();
     }
 
-    private void friendDisplay(){
-        Log.i("FriendDisplay","In FriendDisplay");
-        GraphRequest request= GraphRequest.newMyFriendsRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONArrayCallback() {
+
+    private void friendRequest() {
+        GraphRequest request = GraphRequest.newMyFriendsRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONArrayCallback() {
             @Override
             public void onCompleted(JSONArray objects, GraphResponse response) {
                 //creating a new friends adapter
-                Log.i("FriendsAdapter","Creating a new friends adapter");
-                friendsAdapter= new FriendsAdapter(HomeActivity.this, Friend.fromJson(objects));
+                Log.i("FriendsAdapter", "requesting friends");
+                friends = new ArrayList<>();
+                friends.addAll(Friend.fromJson(objects));
+                Log.i("Size of friends", "" + friends.size());
+                friendsAdapter = new FriendsAdapter(getBaseContext(), friends);
             }
         });
 
         request.executeAsync();
-        Log.i("Executed request","Request has been executed");
-        ListView listView = (ListView) findViewById(android.R.id.list);
-        Log.i("ListView","Got listView is it = to null "+(listView==null));
-        if(listView!=null) {
-            Log.i("ListView Success", "Attaching adapter to a not null list view");
-            listView.setAdapter(friendsAdapter);
-        }
-        else{
-            Log.i("ListView","ListView is = to null so adaptor wasn't attached");
-        }
-    }
 
+    }
 }
